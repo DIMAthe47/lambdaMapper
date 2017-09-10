@@ -8,3 +8,4 @@ Design prerequisites:
 1. Two-way mapping in one file
 1. Hot replace
 1. NullPointerException avoiding
+1. No implicit mapping
