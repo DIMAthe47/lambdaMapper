@@ -1,25 +1,11 @@
-package core.step1;
+package core.base;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class InternalMapper {
+public class PropertyMapper {
 
-    public <T, S> T map(S source, Class<T> targetClass, Mapper<S, T> mapper) {
-        T target = null;
-        try {
-            target = targetClass.newInstance();
-            mapper.map(source, target);
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return target;
-    }
-
-    public <T1, T2> void internalMap(Supplier<T1> source, Consumer<T2> target, Converter<T1, T2> converter) {
+    public <T1, T2> void propertyMap(Supplier<T1> source, Consumer<T2> target, Converter<T1, T2> converter) {
         T1 temp = null;
         try {
             temp = source.get();
@@ -36,7 +22,7 @@ public class InternalMapper {
         }
     }
 
-    public <T1> void internalMap(Supplier<T1> source, Consumer<T1> target) {
+    public <T1> void propertyMap(Supplier<T1> source, Consumer<T1> target) {
         T1 temp = null;
         try {
             temp = source.get();

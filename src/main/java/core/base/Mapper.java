@@ -1,7 +1,5 @@
-package core.step3;
+package core.base;
 
-
-import core.step1.Converter;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -45,12 +43,5 @@ public abstract class Mapper<S, T> {
 
         return target;
     }
-
-
-//    public <T1> void checkTypeSupplier(Supplier<T1> source) {
-//    }
-
-//    public <T2> void checkTypeConsumer(Consumer<T2> consumer) {
-//    }
 
 }

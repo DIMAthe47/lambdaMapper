@@ -1,6 +1,6 @@
-package step3;
+package tests;
 
-import core.step3.CDMapper;
+import mappers.CDMapper;
 import model.simple.A;
 import model.nested.C;
 import model.nested.D;

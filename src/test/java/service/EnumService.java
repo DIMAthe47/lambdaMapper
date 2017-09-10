@@ -1,4 +1,4 @@
-package core.service;
+package service;
 
 import model.entity.AbstractEntityWithLongId;
 import model.entity.Enum1;

@@ -1,6 +1,7 @@
-package core.step3;
+package mappers;
 
-import core.step1.Converter;
+import core.base.Converter;
+import core.base.Mapper;
 import model.simple.A;
 import model.simple.B;
 import model.nested.C;

@@ -1,5 +1,6 @@
-package core.step3;
+package mappers;
 
+import core.base.Mapper;
 import model.simple.A;
 import model.simple.B;
 

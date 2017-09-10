@@ -1,6 +1,6 @@
-package step3;
+package tests;
 
-import core.step3.EFMapper;
+import mappers.EFMapper;
 import model.inheritance.E;
 import model.inheritance.F;
 import org.junit.Test;

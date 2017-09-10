@@ -1,15 +1,11 @@
-package core.step3;
+package mappers;
 
-import core.service.EnumServiceConverters;
-import core.step1.Converter;
+import core.base.Mapper;
+import service.EnumServiceConverters;
 import model.entity.Entity1;
 import model.entity.Entity1Dto;
 import model.entity.Enum1;
 import model.entity.Enum2;
-import model.nested.C;
-import model.nested.D;
-import model.simple.A;
-import model.simple.B;
 
 public class Entity1Mapper extends Mapper<Entity1, Entity1Dto> {
 

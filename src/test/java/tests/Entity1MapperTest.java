@@ -1,13 +1,10 @@
-package step3;
+package tests;
 
-import core.step3.ABMapper;
-import core.step3.Entity1Mapper;
+import mappers.Entity1Mapper;
 import model.entity.Entity1;
 import model.entity.Entity1Dto;
 import model.entity.Enum1;
 import model.entity.Enum2;
-import model.simple.A;
-import model.simple.B;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

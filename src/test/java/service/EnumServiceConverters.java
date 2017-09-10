@@ -1,6 +1,6 @@
-package core.service;
+package service;
 
-import core.step1.Converter;
+import core.base.Converter;
 import model.entity.AbstractEntityWithLongId;
 
 public class EnumServiceConverters {
