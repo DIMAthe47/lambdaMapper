@@ -9,3 +9,4 @@ Design prerequisites:
 1. Hot replace
 1. NullPointerException avoiding
 1. No implicit mapping
+1. Imperative style for main "map" method to allow adding complex logic to mapping process
