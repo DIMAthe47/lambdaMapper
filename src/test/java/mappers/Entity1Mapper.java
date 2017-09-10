@@ -16,6 +16,7 @@ public class Entity1Mapper extends Mapper<Entity1, Entity1Dto> {
         propertyMap(() -> source.getA(), (a) -> target.setA(a));
         propertyMap(() -> source.getB(), (b) -> target.setB(b));
         propertyMap(() -> source.getEnum1(), (id) -> target.setEnum1Id(id), enumServiceConverters.getConverterFromEntity());
+//        propertyMap(() -> source.getEnum1(), (id) -> target.setEnum1Id(id), enumServiceConverters.getConverterFromEntity());
         propertyMap(() -> source.getEnum2(), (id) -> target.setEnum2Id(id), enumServiceConverters.getConverterFromEntity());
     }
 

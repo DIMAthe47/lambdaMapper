@@ -20,15 +20,7 @@ public abstract class Mapper<S, T> {
         return null;
     }
 
-    protected PropertyMapper propertyMapper = new PropertyMapper();
-
-    public <T1, T2> void propertyMap(Supplier<T1> source, Consumer<T2> target, Converter<T1, T2> converter) {
-        propertyMapper.propertyMap(source, target, converter);
-    }
-
-    public <T1> void propertyMap(Supplier<T1> source, Consumer<T1> target) {
-        propertyMapper.propertyMap(source, target);
-    }
+//    protected PropertyMapper propertyMapper = new PropertyMapper();
 
     public T map(S source, Class<T> targetClass) {
         T target = null;
@@ -42,6 +34,45 @@ public abstract class Mapper<S, T> {
         }
 
         return target;
+    }
+
+    public <P1> void propertyMapWithDefault(Supplier<P1> source, Consumer<P1> target, P1 defaultValue) {
+        P1 temp = null;
+        try {
+            temp = source.get();
+        } catch (NullPointerException e) {
+            temp = defaultValue;
+        }
+        try {
+            target.accept(temp);
+        } catch (NullPointerException e) {
+        }
+    }
+
+    public <P1, P2> void propertyMapWithDefault(Supplier<P1> source, Consumer<P2> target, Converter<P1, P2> converter, P2 defaultValue) {
+        P1 temp = null;
+        try {
+            temp = source.get();
+        } catch (NullPointerException e) {
+        }
+        P2 temp2 = null;
+        try {
+            temp2 = converter.convert(temp);
+        } catch (Exception e) {
+            temp2 = defaultValue;
+        }
+        try {
+            target.accept(temp2);
+        } catch (NullPointerException e) {
+        }
+    }
+
+    public <P1> void propertyMap(Supplier<P1> source, Consumer<P1> target) {
+        propertyMapWithDefault(source, target, (P1) null);
+    }
+
+    public <P1, P2> void propertyMap(Supplier<P1> source, Consumer<P2> target, Converter<P1, P2> converter) {
+        propertyMapWithDefault(source, target, converter, null);
     }
 
 }

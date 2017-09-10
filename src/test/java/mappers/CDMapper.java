@@ -19,14 +19,14 @@ public class CDMapper extends Mapper<C, D> {
     }
 
     @Override
-    protected void internalBackwardMap(D source, C target) {
-
+    protected void internalForwardMap(C source, D target) {
+        propertyMap(() -> source.getA(), (b) -> target.setB(b), new ABConverter());
+//        propertyMap(() -> source.getA(), (b) -> target.setB(b), (a) -> new ABMapper().map(a, B.class));
     }
 
     @Override
-    protected void internalForwardMap(C source, D target) {
-        propertyMap(() -> source.getA(), (b) -> target.setB(b), new ABConverter());
-        propertyMap(() -> source.getA(), (b) -> target.setB(b), (a) -> new ABMapper().map(a, B.class));
+    protected void internalBackwardMap(D source, C target) {
+
     }
 
 }
