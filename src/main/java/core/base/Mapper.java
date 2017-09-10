@@ -92,5 +92,4 @@ public abstract class Mapper<S, T> {
     public <P1, P2> void propertyMap(Supplier<P1> source, Consumer<P2> target, Converter<P1, P2> converter) {
         propertyMapWithDefault(source, target, converter, null);
     }
-
 }

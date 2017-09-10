@@ -8,7 +8,7 @@ public class EFMapper extends Mapper<E, F> {
 
     @Override
     protected void internalForwardMap(E source, F target) {
-        propertyMap(() -> source.getE3(), (s) -> target.setF3(s));
+        propertyMap(source::getE3, target::setF3);
     }
 
     @Override
