@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
-    Customer customer;
-    Address billingAddress;
+    Customer customer = new Customer();
+    Address billingAddress = new Address();
 }

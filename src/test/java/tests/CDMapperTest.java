@@ -14,7 +14,7 @@ public class CDMapperTest {
     public void testMapClass() {
         CDMapper mapper = new CDMapper();
         C c = new C(new A("a1", "a2"));
-        D d = mapper.map(c, D.class);
+        D d = mapper.mapForward(c, D.class);
         assertEquals(d.getB().getB1(), c.getA().getA1());
         assertEquals(d.getB().getB2(), c.getA().getA2());
     }

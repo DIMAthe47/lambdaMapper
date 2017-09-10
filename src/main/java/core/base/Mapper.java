@@ -6,10 +6,16 @@ import java.util.function.Supplier;
 
 public abstract class Mapper<S, T> {
 
-    public void map(S source, T target) {
+    public void mapForward(S source, T target) {
         if (parentMapper() != null)
-            parentMapper().map(source, target);
+            parentMapper().mapForward(source, target);
         internalForwardMap(source, target);
+    }
+
+    public void mapBackward(T source, S target) {
+        if (parentMapper() != null)
+            parentMapper().mapBackward(source, target);
+        internalBackwardMap(source, target);
     }
 
     protected abstract void internalForwardMap(S source, T target);
@@ -20,28 +26,40 @@ public abstract class Mapper<S, T> {
         return null;
     }
 
-//    protected PropertyMapper propertyMapper = new PropertyMapper();
-
-    public T map(S source, Class<T> targetClass) {
+    public T mapForward(S source, Class<T> targetClass) {
         T target = null;
         try {
             target = targetClass.newInstance();
-            this.map(source, target);
+            this.mapForward(source, target);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
         return target;
     }
 
-    public <P1> void propertyMapWithDefault(Supplier<P1> source, Consumer<P1> target, P1 defaultValue) {
+    public S mapBackward(T source, Class<S> targetClass) {
+        S target = null;
+        try {
+            target = targetClass.newInstance();
+            this.mapBackward(source, target);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return target;
+    }
+
+    //
+
+    public <P1> void propertyMapWithDefault(Supplier<P1> source, Consumer<P1> target, P1 defaultValueForSourceGettersChain) {
         P1 temp = null;
         try {
             temp = source.get();
         } catch (NullPointerException e) {
-            temp = defaultValue;
+            temp = defaultValueForSourceGettersChain;
         }
         try {
             target.accept(temp);
@@ -49,7 +67,7 @@ public abstract class Mapper<S, T> {
         }
     }
 
-    public <P1, P2> void propertyMapWithDefault(Supplier<P1> source, Consumer<P2> target, Converter<P1, P2> converter, P2 defaultValue) {
+    public <P1, P2> void propertyMapWithDefault(Supplier<P1> source, Consumer<P2> target, Converter<P1, P2> converter, P2 defaultValueForSourceGettersChain) {
         P1 temp = null;
         try {
             temp = source.get();
@@ -59,7 +77,7 @@ public abstract class Mapper<S, T> {
         try {
             temp2 = converter.convert(temp);
         } catch (Exception e) {
-            temp2 = defaultValue;
+            temp2 = defaultValueForSourceGettersChain;
         }
         try {
             target.accept(temp2);
