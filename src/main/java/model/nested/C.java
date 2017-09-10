@@ -1,13 +1,13 @@
-package model;
+package model.nested;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import model.simple.A;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FParent {
-    private String f1;
-    private String f2;
+public class C {
+    private A a;
 }

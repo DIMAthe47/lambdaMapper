@@ -1,4 +1,6 @@
-import core.step1.CDMapper;
+package step3;
+
+import core.step3.CDMapper;
 import model.simple.A;
 import model.nested.C;
 import model.nested.D;

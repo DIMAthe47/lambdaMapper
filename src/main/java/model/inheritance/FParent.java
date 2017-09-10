@@ -1,4 +1,4 @@
-package model;
+package model.inheritance;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class F extends EParent{
-    private String f3;
+public class FParent {
+    private String f1;
+    private String f2;
 }

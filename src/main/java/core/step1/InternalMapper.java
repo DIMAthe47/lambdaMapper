@@ -1,18 +1,15 @@
-package core;
-
+package core.step1;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public abstract class Mapper<S, T> {
+public class InternalMapper {
 
-    public abstract void map(S source, T target);
-
-    public T map(S source, Class<T> targetClass) {
+    public <T, S> T map(S source, Class<T> targetClass, Mapper<S, T> mapper) {
         T target = null;
         try {
             target = targetClass.newInstance();
-            map(source, target);
+            mapper.map(source, target);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -50,11 +47,4 @@ public abstract class Mapper<S, T> {
         } catch (NullPointerException e) {
         }
     }
-
-//    public <T1> void checkTypeSupplier(Supplier<T1> source) {
-//    }
-
-//    public <T2> void checkTypeConsumer(Consumer<T2> consumer) {
-//    }
-
 }

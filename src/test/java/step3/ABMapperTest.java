@@ -1,5 +1,7 @@
+package step3;
+
+import core.step3.ABMapper;
 import model.simple.A;
-import core.step1.ABMapper;
 import model.simple.B;
 import org.junit.Test;
 
