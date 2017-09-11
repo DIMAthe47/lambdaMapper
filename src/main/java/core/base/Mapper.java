@@ -1,6 +1,9 @@
 package core.base;
 
 
+import core.base.enumConverter.EnumToNameConverter;
+import core.base.enumConverter.NameToEnumConverter;
+
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -122,5 +125,13 @@ public abstract class Mapper<S, T> {
                 return s;
             }
         };
+    }
+
+    public <T extends Enum<T>> Converter<String, T> buildNameToEnumConverter(Class<T> enumClass) {
+        return new NameToEnumConverter(enumClass);
+    }
+
+    public Converter<Enum<?>, String> buildEnumToNameConverter() {
+        return new EnumToNameConverter();
     }
 }
