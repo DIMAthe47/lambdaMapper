@@ -92,4 +92,24 @@ public abstract class Mapper<S, T> {
     public <P1, P2> void propertyMap(Supplier<P1> source, Consumer<P2> target, Converter<P1, P2> converter) {
         propertyMapWithDefault(source, target, converter, null);
     }
+
+    public Converter<S, T> buildForwardConverter(final Class<T> clazz) {
+        return new Converter<S, T>() {
+            @Override
+            public T convert(S source) {
+                T t = mapForward(source, clazz);
+                return t;
+            }
+        };
+    }
+
+    public Converter<T, S> buildBackwardConverter(final Class<S> clazz) {
+        return new Converter<T, S>() {
+            @Override
+            public S convert(T source) {
+                S s = mapBackward(source, clazz);
+                return s;
+            }
+        };
+    }
 }
