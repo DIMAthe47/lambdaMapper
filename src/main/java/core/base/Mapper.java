@@ -1,6 +1,7 @@
 package core.base;
 
 
+import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -91,6 +92,16 @@ public abstract class Mapper<S, T> {
 
     public <P1, P2> void propertyMap(Supplier<P1> source, Consumer<P2> target, Converter<P1, P2> converter) {
         propertyMapWithDefault(source, target, converter, null);
+    }
+
+    public <P1, P2> void propertyMap(Supplier<Collection<? extends P1>> source, Supplier<Collection<? super P2>> target, Converter<P1, P2> converter) {
+        Collection<? extends P1> sourceCollection = source.get();
+        Collection<? super P2> targetCollection = target.get();
+        targetCollection.clear();
+        for (P1 p1 : sourceCollection) {
+            P2 p2 = converter.convert(p1);
+            targetCollection.add(p2);
+        }
     }
 
     public Converter<S, T> buildForwardConverter(final Class<T> clazz) {
